@@ -4481,6 +4481,8 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: Dodger;
+  src: url('../fonts/dodger/dodger3_1.ttf');
   font-weight: 400;
   line-height: 1.1;
 }
