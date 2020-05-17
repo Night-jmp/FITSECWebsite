@@ -79,3 +79,23 @@ def writeups(request):
 def getinvolved(request):
     return render(request = request,
                   template_name='main/getinvolved.html')
+
+
+def terms(request):
+    return render(request = request,
+                  template_name='main/terms.html')
+
+
+def press(request):
+    return render(request = request,
+                  template_name='main/press.html')
+
+    
+def sponsors(request):
+    return render(request = request,
+                  template_name='main/sponsors.html')
+
+
+def news(request):
+    return render(request = request,
+                  template_name='main/news.html')
