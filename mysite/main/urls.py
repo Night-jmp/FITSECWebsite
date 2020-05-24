@@ -18,4 +18,5 @@ urlpatterns = [
   path("press", views.press, name="press"),
   path("sponsors", views.sponsors, name="sponsors"), 
   path("news", views.news, name="news"),
+  path("dashboard", views.dashboard, name="dashboard"),
 ]

@@ -1,2 +1,40 @@
 {% extends 'main/header.html' %}
 
+{% block content %}
+
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+
+
+<div class="container">
+        <h4 style="text-align:center;"><b>How to get involved</b></h4>
+
+  <p style="text-align:justify;"> FITSEC is a competitive collegiate cybersecurity club created to provide the students of Florida Tech with a competitive team full of members willing to help push the technical bounds of each and every member to the next level. The first requirement for anyone wanting to join FITSEC is to be a currently enrolled student at Florida Tech.<br><br>
+
+	<h4 style="text-align:center;">Join us</h4>
+      <ul class = "collapsible" data-collapsible = "accordion">
+         <li>
+            <div class = "collapsible-header">Discord</div>
+            <div class = "collapsible-body"><p>Join us on discord! A lot of information is put out through discord and every member should be monitoring it. <a href="https://discord.com/invite/EN6RCNG">Discord Invitation</a></p></div>
+         </li>
+
+         <li>
+            <div class = "collapsible-header">Enroll in engage</div>
+            <div class = "collapsible-body"><p>Florida Tech uses campus labs as its student organization portal. Please join our engage portal so that Florida Tech can track all of the members. We routinely post meeting minutes, and it houses our constitution. <a href="https://floridatech.campuslabs.com/engage/organization/fitsec">Campus Labs</a></p></div>
+         </li>
+
+         <li>
+            <div class = "collapsible-header">Register on this site!</div>
+            <div class = "collapsible-body"><p>Please register for a user account on this site. You will need a Florida Tech email account in order to register.</p></div>
+         </li>
+      </ul>
+
+
+  </p>
+</div>
+
+
+{% endblock %}

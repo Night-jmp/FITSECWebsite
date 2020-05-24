@@ -1,2 +1,41 @@
 {% extends 'main/header.html' %}
 
+{% block content %}
+
+
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+
+
+<div class="container">
+        <h4 style="text-align:center;"><b>How to contact us</b></h4>
+
+<p style="text-align:justify;"> The easiest way to get in contact with us is to do one of the following:<br>
+
+
+<h4>Contact Methods</h4>
+      <ul class = "collapsible" data-collapsible = "accordion">
+         <li>
+            <div class = "collapsible-header">Join Discord</div>
+            <div class = "collapsible-body"><p>See <a href="/getinvolved">Getting Involved</a> for more information on joining our discord server.</p></div>
+         </li>
+
+         <li>
+            <div class = "collapsible-header">Email</div>
+            <div class = "collapsible-body"><p>Drop us an email if you have any questions unanswered here! <a href="mailto:contact@fitsec.org">contact@fitsec.org</a></p></div>
+         </li>
+
+         <li>
+            <div class = "collapsible-header">Phone</div>
+            <div class = "collapsible-body"><p>You can reach FITSEC at (321)549-8421</p></div>
+         </li>
+      </ul>
+
+  </p>
+</div>
+
+
+{% endblock %}

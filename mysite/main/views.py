@@ -75,7 +75,6 @@ def writeups(request):
                   template_name='main/writeups.html')
 
 
-
 def getinvolved(request):
     return render(request = request,
                   template_name='main/getinvolved.html')
@@ -99,3 +98,8 @@ def sponsors(request):
 def news(request):
     return render(request = request,
                   template_name='main/news.html')
+
+
+def dashboard(request):
+    return render(request = request,
+                  template_name='main/dashboard.html')
