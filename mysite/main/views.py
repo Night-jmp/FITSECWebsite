@@ -20,6 +20,8 @@ def register(request):
             if "@my.fit.edu" not in email:
                 messages.error(request, "Not a Florida Tech email!")
             else:
+                # Need to add a wait for email validation here.
+                # Perhaps a validated field for users?
                 messages.success(request, f"New account created: {username}")
                 login(request, user)
                 return redirect("main:homepage")
