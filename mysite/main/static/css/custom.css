@@ -2,8 +2,17 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: rgba(60, 56, 60, 1);
   }
 
   main {
     flex: 1 0 auto;
   }
+
+.nav-link {
+     color: rgb(175, 175, 175);
+}
+
+.nav-link:hover {
+     color: #ffffff
+}

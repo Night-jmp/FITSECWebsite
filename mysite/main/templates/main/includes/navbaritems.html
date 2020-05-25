@@ -1,13 +1,11 @@
 {% if user.is_authenticated %}
-     <li><a href="/account">{{user.username|title}}</a></li>
-     <li><a href="/logout">Logout</a></li>
-     <li><a href="/dashboard">Dashboard</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/account">{{user.username|title}}</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/logout">Logout</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/dashboard">Dashboard</a></li>
 {% else %}
-     <li><a href="/">Home</a></li>
-     <li><a href="/about">About us</a></li>
-     <li><a href="/writeups">Writeups</a></li>
-     <li><a href="/getinvolved">Getting Involved</a></li> 
-     <li><a href="/contact">Contact us</a></li>
-     <li><a href="/login">Login</a></li>
-     <li><a href="/register">Register</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/">Home</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/about">About us</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/writeups">Writeups</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/getinvolved">Getting Involved</a></li>
+     <li class="nav-item mx-3"><a class="nav-link" href="/contact">Contact us</a></li>
 {% endif %}

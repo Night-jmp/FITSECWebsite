@@ -2,32 +2,35 @@
 <head>
     <!-- Prism CSS -->
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script> 
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 
 <body>
-  <nav>
-    <div class="nav-wrapper #b71c1c red darken-4">
-	    <a href="#" class="brand-logo"><img style="width:60px; height:60px;" src="{% static 'images/FITSECCrest.png' %}"/></a>
-	<ul id="nav-mobile" class="right hide-on-med-and-down">
-      	{% include 'main/includes/navbaritems.html' %}
-      </ul>
-    </div>
-  </nav>
+     <nav class="navbar navbar-expand-lg">
+          <a href="/" class="navbar-brand">
+               <img style="width:60px; height:60px;" src="{% static 'images/FITSECCrest.png' %}"/>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" ariaexpanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav mr-auto">
+                    {% include 'main/includes/navbaritems.html' %}
+               </ul>
+               <ul class="navbar-nav navbar-right">
+                    <li class="nav-item mx-3"><div class="btn-nav"><a class="btn btn-primary btn-small navbar-btn" href="/login">Login</a></div></li>
+               </ul>
+          </div>
+     </nav>
   {% include 'main/includes/messaging.html' %}
-  <div class="container">
-    {% block content %}
-    {% endblock %}
-  </div>
+  {% block content %}
+  {% endblock %}
 </body>
 
-    
+
 
 
 <footer class="page-footer #9e9e9e grey">
