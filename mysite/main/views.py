@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from .forms import NewUserForm
+from .models import Writeup
 
 # Create your views here.
 def homepage(request):
@@ -71,8 +72,10 @@ def about(request):
 
 
 def writeups(request):
-    return render(request = request,
-                  template_name='main/writeups.html')
+    all_writeups = Writeup.objects.all()
+    context = {'all_writeups': all_writeups}
+    return render(request = request, 
+                  template_name='main/writeups.html', context=context)
 
 
 def getinvolved(request):
