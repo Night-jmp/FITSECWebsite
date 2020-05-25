@@ -16,9 +16,13 @@ def register(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f"New account created: {username}")
-            login(request, user)
-            return redirect("main:homepage")
+            email = form.cleaned_data.get('email')
+            if "@my.fit.edu" not in email:
+                messages.error(request, "Not a Florida Tech email!")
+            else:
+                messages.success(request, f"New account created: {username}")
+                login(request, user)
+                return redirect("main:homepage")
 
         else:
             for msg in form.error_messages:
