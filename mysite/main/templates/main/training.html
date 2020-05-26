@@ -1,0 +1,23 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<br><br>
+<h4 style="text-align:center;"><b>Training</b></h4><br><br>
+<p style="text-align:justify;">Training has been segmented into domains and categories. Some training modules may bleed over into another domain or category, so if you don't see it where you expect, look elsewhere.<br><br>
+
+    <div class="row">
+        {% for domain in all_training %}
+            <div class="col s12 m6 l4">
+                <a href="{{domain.slug}}", style="color:#000">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <div class="card-title">{{domain.title}}</div>
+                            <p>{{domain.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+<br><br>
+{% endblock %}

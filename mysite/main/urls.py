@@ -9,14 +9,18 @@ urlpatterns = [
   path("register/", views.register, name="register"),
   path("logout", views.logout_request, name="logout"),
   path("login", views.login_request, name="login"),
-  
+
   path("writeups", views.writeups, name="writeups"),
   path("contact", views.contact, name="contact"),
   path("about", views.about, name="about"),
   path("getinvolved", views.getinvolved, name="getinvolved"),
   path("terms", views.terms, name="terms"),
   path("press", views.press, name="press"),
-  path("sponsors", views.sponsors, name="sponsors"), 
+  path("sponsors", views.sponsors, name="sponsors"),
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
+  path("training", views.training, name="training"),
+  path("CTF", views.CTF, name="CTF"),
+  path("CPTC", views.CPTC, name="CPTC"),
+  path("CCDC", views.CCDC, name="CCDC"),
 ]

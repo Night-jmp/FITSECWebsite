@@ -121,6 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = "/login"
+
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 1120,

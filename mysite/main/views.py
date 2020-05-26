@@ -3,7 +3,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from .forms import NewUserForm
-from .models import Writeup
+from .models import Writeup, Training, Training_Domain, Training_Category
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 # Create your views here.
 def homepage(request):
@@ -40,6 +42,7 @@ def register(request):
                   context={"form":form})
 
 
+@login_required
 def logout_request(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
@@ -80,7 +83,7 @@ def about(request):
 def writeups(request):
     all_writeups = Writeup.objects.all()
     context = {'all_writeups': all_writeups}
-    return render(request = request, 
+    return render(request = request,
                   template_name='main/writeups.html', context=context)
 
 
@@ -98,7 +101,7 @@ def press(request):
     return render(request = request,
                   template_name='main/press.html')
 
-    
+
 def sponsors(request):
     return render(request = request,
                   template_name='main/sponsors.html')
@@ -109,6 +112,32 @@ def news(request):
                   template_name='main/news.html')
 
 
+@login_required
 def dashboard(request):
     return render(request = request,
                   template_name='main/dashboard.html')
+
+@login_required
+def training(request):
+    all_training = Training_Domain.objects.all()
+    context = {'all_training': all_training}
+    return render(request = request,
+                  template_name='main/training.html', context=context)
+
+@login_required
+def CTF(request):
+    all_categories = Training_Domain.objects.get(title="CTF").training_category_set.all()
+    context = {'all_categories': all_categories}
+    return render(request = request, template_name='main/CTF.html', context=context)
+
+@login_required
+def CPTC(request):
+    all_categories = Training_Domain.objects.get(title="Penetration Testing").training_category_set.all()
+    context = {'all_categories': all_categories}
+    return render(request = request, template_name='main/CPTC.html', context=context)
+
+@login_required
+def CCDC(request):
+    all_categories = Training_Domain.objects.get(title="Cyber Defense").training_category_set.all()
+    context = {'all_categories': all_categories}
+    return render(request = request, template_name='main/CCDC.html', context=context)

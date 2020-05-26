@@ -1,0 +1,23 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<h4 style="text-align:center;"><b>CCDC</b></h4><br><br>
+<p style="text-align:justify;">The Collegiate Cyber Defense Competition and other defensive competitions test the player's ability to identify and eliminate threats while an adversary attempts to break in.<br><br>
+
+    <div class="row">
+        {% for category in all_categories %}
+            <div class="col s12 m6 l4">
+                <a href="{{domain.slug}}", style="color:#000">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <div class="card-title">{{category.title}}</div>
+                            <p>{{category.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+<br><br>
+{% endblock %}
