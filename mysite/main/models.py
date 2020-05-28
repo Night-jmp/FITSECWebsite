@@ -29,6 +29,7 @@ class Training_Category(models.Model):
     title = models.CharField(max_length=50, default="Basic Skill")
     domain = models.ForeignKey(Training_Domain, default=1, verbose_name="Domain", on_delete=models.SET_DEFAULT)
     description = models.CharField(max_length=200, default="description")
+    slug = models.CharField(max_length=50, default=1)
 
     class Meta:
         verbose_name_plural = "Categories"

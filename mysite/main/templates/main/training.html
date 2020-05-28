@@ -1,6 +1,8 @@
 {% extends 'main/header.html' %}
 
 {% block content %}
+
+{% if all_training %}
 <br><br>
 <h4 style="text-align:center;"><b>Training</b></h4><br><br>
 <p style="text-align:justify;">Training has been segmented into domains and categories. Some training modules may bleed over into another domain or category, so if you don't see it where you expect, look elsewhere.<br><br>
@@ -20,4 +22,55 @@
         {% endfor %}
     </div>
 <br><br>
+{% endif %}
+
+{% if all_categories %}
+<h4 style="text-align:center;"><b>CTFs</b></h4><br><br>
+<p style="text-align:justify;">Capure the Flag competitions test your ability to perform certain vulnerability assessment related tasks, such as crafting custom exploits for various architectures or web technologies, or finding hidden covert channels.<br><br>
+
+    <div class="row">
+        {% for category in all_categories %}
+            <div class="col s12 m6 l4">
+                <a href="{{category.slug}}", style="color:#000">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <div class="card-title">{{category.title}}</div>
+                            <p>{{category.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+<br><br>
+{% endif %}
+
+{% if all_modules %}
+<h4 style="text-align:center;"><b>TITLE</b></h4><br><br>
+<p style="text-align:justify;">LONG DESCRIPTION (add me to model)<br><br>
+
+    <div class="row">
+        {% for module in all_modules %}
+            <div class="col s12 m6 l4">
+                <a href="{{module.slug}}", style="color:#000">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <div class="card-title">{{module.title}}</div>
+                            <p>{{module.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+<br><br>
+{% endif %}
+
+{% if training_module %}
+<h4 style="text-align:center;"><b>TITLE</b></h4><br><br>
+<p style="text-align:justify;">LONG DESCRIPTION (add me to model)<br><br>
+    {{training_module.category}}
+<br><br>
+{% endif %}
+
 {% endblock %}

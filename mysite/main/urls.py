@@ -20,7 +20,9 @@ urlpatterns = [
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
   path("training", views.training, name="training"),
-  path("CTF", views.CTF, name="CTF"),
-  path("CPTC", views.CPTC, name="CPTC"),
-  path("CCDC", views.CCDC, name="CCDC"),
+  path("CTF", views.training, name="CTF"),
+  path("CPTC", views.training, name="CPTC"),
+  path("CCDC", views.training, name="CCDC"),
+  path("PWN", views.training, name="PWN"),
+  path("BOF", views.training, name="BOF"),
 ]
