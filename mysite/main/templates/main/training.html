@@ -1,9 +1,8 @@
 {% extends 'main/header.html' %}
 
 {% block content %}
-
-{% if all_training %}
 <br><br>
+{% if all_training %}
 <h4 style="text-align:center;"><b>Training</b></h4><br><br>
 <p style="text-align:justify;">Training has been segmented into domains and categories. Some training modules may bleed over into another domain or category, so if you don't see it where you expect, look elsewhere.<br><br>
 
@@ -22,11 +21,12 @@
         {% endfor %}
     </div>
 <br><br>
+</p>
 {% endif %}
 
 {% if all_categories %}
-<h4 style="text-align:center;"><b>CTF</b></h4><br><br>
-<p style="text-align:justify;">Capure the Flag competitions test your ability to perform certain vulnerability assessment related tasks, such as crafting custom exploits for various architectures or web technologies, or finding hidden covert channels.<br><br>
+<h4 style="text-align:center;"><b>{{all_categories.0.domain}}</b></h4><br><br>
+<p style="text-align:justify;">{{all_categories.0.cat_description.description}}<br><br>
 
     <div class="row">
         {% for category in all_categories %}
@@ -43,11 +43,12 @@
         {% endfor %}
     </div>
 <br><br>
+</p>
 {% endif %}
 
 {% if all_modules %}
-<h4 style="text-align:center;"><b>TITLE</b></h4><br><br>
-<p style="text-align:justify;">LONG DESCRIPTION (add me to model)<br><br>
+<h4 style="text-align:center;"><b>{{all_modules.0.category}}</b></h4><br><br>
+<p style="text-align:justify;">{{all_modules.0.cat_description.description}}<br><br>
 
     <div class="row">
         {% for module in all_modules %}
@@ -64,12 +65,14 @@
         {% endfor %}
     </div>
 <br><br>
+</p>
 {% endif %}
 
 {% if training_module %}
-<h4 style="text-align:center;"><b>TITLE</b></h4><br><br>
-<p style="text-align:justify;">LONG DESCRIPTION (add me to model)<br><br>
-    {{training_module.category}}
+<h4 style="text-align:center;"><b>{{training_module.title}}</b></h4><br><br>
+<p style="text-align:justify;">
+    {{training_module.content}}
+</p>
 <br><br>
 {% endif %}
 

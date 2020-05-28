@@ -2,7 +2,15 @@ from django.db import models
 
 # Create your models here.
 
-from django.db import models
+class Category_Description(models.Model):
+    title = models.CharField(max_length=50, default="Title")
+    description = models.TextField()
+
+    class Meta:
+        ordering = ['title', 'description']
+    
+    def __str__(self):
+        return self.title
 
 class Writeup(models.Model):
     title = models.CharField(max_length=50, default="Title")
@@ -30,6 +38,7 @@ class Training_Category(models.Model):
     domain = models.ForeignKey(Training_Domain, default=1, verbose_name="Domain", on_delete=models.SET_DEFAULT)
     description = models.CharField(max_length=200, default="description")
     slug = models.CharField(max_length=50, default=1)
+    cat_description = models.ForeignKey(Category_Description, default=1, verbose_name="Cat", on_delete=models.SET_DEFAULT)
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -42,6 +51,8 @@ class Training(models.Model):
     content = models.TextField()
     category = models.ForeignKey(Training_Category, default=1, verbose_name="Category", on_delete=models.SET_DEFAULT)
     slug = models.SlugField(max_length=50, default=1)
+    cat_description = models.ForeignKey(Category_Description, default=1, verbose_name="Cat", on_delete=models.SET_DEFAULT)
 
     def __str__(self):
         return self.title
+
