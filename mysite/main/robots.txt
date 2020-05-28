@@ -1,0 +1,14 @@
+# Testing mode: disallowing all crawlers
+User-agent: *
+Disallow: /
+
+# Eliminate access to all Database files
+User-agent: *
+Disallow: /*.sql
+Disallow: /*.SQL
+Disallow: /*.sqlite3
+
+# Site Map: to be included soon
+# Sitemap: https://www.fitsec.org/sitemap.xml
+# Sitemap: http://www.fitsec.org/sitemap.xml
+
