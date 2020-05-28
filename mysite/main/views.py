@@ -118,7 +118,7 @@ def dashboard(request):
                   template_name='main/dashboard.html')
 
 @login_required
-def training(request):
+def training(request, slug=None):
     test = Training_Domain.objects.all()
     test_list = list(test)
 
@@ -128,36 +128,26 @@ def training(request):
         return render(request = request,
                   template_name='main/training.html', context=context)
 
-    if "CTF" in request.path:
-        all_categories = Training_Domain.objects.get(title="CTF").training_category_set.all()
-        context = {'all_categories': all_categories}
-        return render(request = request, template_name='main/training.html', context=context)
+    domain_list = list(Training_Domain.objects.all())
+    for domain in domain_list:
+        if domain.slug in request.path:
+            all_categories = Training_Domain.objects.get(slug=slug).training_category_set.all()
+            context = {'all_categories': all_categories}
+            return render(request = request, template_name='main/training.html', context=context)
 
-    if "CPTC" in request.path:
-        all_categories = Training_Domain.objects.get(title="Penetration Testing").training_category_set.all()
-        context = {'all_categories': all_categories}
-        return render(request = request, template_name='main/training.html', context=context)
 
-    if "CCDC" in request.path:
-        all_categories = Training_Domain.objects.get(title="Cyber Defense").training_category_set.all()
-        context = {'all_categories': all_categories}
-        return render(request = request, template_name='main/training.html', context=context)
+    category_list = list(Training_Category.objects.all())
+    for category in category_list:
+        if category.slug in request.path:
+            all_modules = Training_Category.objects.get(slug=slug).training_set.all()
+            context = {'all_modules':all_modules}
+            return render(request = request, template_name='main/training.html', context=context)
 
-    if "PWN" in request.path:
-        all_modules = Training_Category.objects.get(title="Binary Exploitation").training_set.all()
-        context = {'all_modules':all_modules}
-        return render(request = request, template_name='main/training.html', context=context)
+    module_list = list(Training.objects.all())
+    for module in module_list:
+        if module.slug in request.path:
+            training_module = Training.objects.get(slug=slug)
+            context = {'training_module':training_module}
+            return render(request = request, template_name='main/training.html', context=context)
 
-    if "BOF" in request.path:
-        training_module = Training.objects.get(title="BOF")
-        context = {'training_module':training_module}
-        return render(request = request, template_name='main/training.html', context=context)
-
-    # Meaningless unless I find a way to dynamically generate URL paths back to /training based on domain, category, and module additions
-    #for item in test_list:
-    #    print(item.title)
-    #    print(request.path)
-    #    if item.title in request.path:
-    #        all_modules = Training_Category.objects.get(title=item.title).training_set.all()
-    #        context = {'all_modules': all_modules}
-    #        return render(request = request, template_name='main/training.html', context=context)
+   

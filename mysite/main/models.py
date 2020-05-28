@@ -41,7 +41,7 @@ class Training(models.Model):
     title = models.CharField(max_length=50, default="Title")
     content = models.TextField()
     category = models.ForeignKey(Training_Category, default=1, verbose_name="Category", on_delete=models.SET_DEFAULT)
-    slug = models.CharField(max_length=50, default=1)
+    slug = models.SlugField(max_length=50, default=1)
 
     def __str__(self):
         return self.title

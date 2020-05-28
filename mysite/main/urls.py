@@ -19,10 +19,7 @@ urlpatterns = [
   path("sponsors", views.sponsors, name="sponsors"),
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
+
   path("training", views.training, name="training"),
-  path("CTF", views.training, name="CTF"),
-  path("CPTC", views.training, name="CPTC"),
-  path("CCDC", views.training, name="CCDC"),
-  path("PWN", views.training, name="PWN"),
-  path("BOF", views.training, name="BOF"),
+  path("<slug:slug>", views.training, name="test"),
 ]
