@@ -10,7 +10,6 @@ urlpatterns = [
   path("logout", views.logout_request, name="logout"),
   path("login", views.login_request, name="login"),
 
-  path("writeups", views.writeups, name="writeups"),
   path("contact", views.contact, name="contact"),
   path("about", views.about, name="about"),
   path("getinvolved", views.getinvolved, name="getinvolved"),
@@ -20,6 +19,9 @@ urlpatterns = [
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
 
+  path("writeups", views.writeups, name="writeups"), # Need a writeups/<slug:slug> for each writeup
+  path("writeups/<slug:slug>", views.writeup, name="writeup"),
+
   path("training", views.training, name="training"),
-  path("<slug:slug>", views.training, name="test"),
+  path("<slug:slug>", views.training, name="training_modules"), # Need this to be training/<slug:slug>
 ]

@@ -20,7 +20,7 @@ class Writeup(models.Model):
     title = models.CharField(max_length=50, default="Title")
     image = models.URLField('Image') # Don't really need this field
     description = models.CharField(max_length=200)
-    #url = models.URLField('Github URL')
+    slug = models.SlugField(max_length=50, default=1)
     content = models.TextField(default="Content here")
     year = models.IntegerField(default=2020)
 

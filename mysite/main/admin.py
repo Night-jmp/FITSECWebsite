@@ -6,15 +6,17 @@ from .models import Writeup, Training_Domain, Training_Category, Training, Categ
 
 class TrainingAdmin(admin.ModelAdmin):
 
-    formfield_overrides = {
-            models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
-            }
+    #formfield_overrides = {
+    #        models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
+    #        }
+    pass
 
 class WriteupAdmin(admin.ModelAdmin):
 
-    formfield_overrides = {
-            models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
-            }
+    #formfield_overrides = {
+    #        models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
+    #        }
+    pass
 
 admin.site.register(Writeup, WriteupAdmin)
 admin.site.register(Training_Domain)

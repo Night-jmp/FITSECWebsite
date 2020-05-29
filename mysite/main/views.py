@@ -80,12 +80,17 @@ def about(request):
                   template_name='main/about.html')
 
 
-def writeups(request):
+def writeups(request, slug=None):
     all_writeups = Writeup.objects.all()
     context = {'all_writeups': all_writeups}
     return render(request = request,
                   template_name='main/writeups.html', context=context)
 
+def writeup(request, slug=None):
+    writeup = Writeup.objects.get(slug=slug)
+    context = {'writeup':writeup}
+    return render(request = request,
+                   template_name='main/writeups.html', context=context)
 
 def getinvolved(request):
     return render(request = request,
@@ -119,8 +124,6 @@ def dashboard(request):
 
 @login_required
 def training(request, slug=None):
-    test = Training_Domain.objects.all()
-    test_list = list(test)
 
     if "training" in request.path:
         all_training = Training_Domain.objects.all()
@@ -133,6 +136,7 @@ def training(request, slug=None):
         if domain.slug in request.path:
             all_categories = Training_Domain.objects.get(slug=slug).training_category_set.all()
             context = {'all_categories': all_categories}
+            request.path = "training/" + request.path
             return render(request = request, template_name='main/training.html', context=context)
 
 
