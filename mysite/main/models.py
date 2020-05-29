@@ -8,14 +8,14 @@ class Category_Description(models.Model):
     description = models.TextField()
 
     class Meta:
-        ordering = ['title', 'description']
+        ordering = ['title']
+        verbose_name_plural = "Category Descriptions"
     
     def __str__(self):
         return self.title
 
 class Writeup(models.Model):
-    # Add author field
-    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, default=1)
     # Change from github URL to textbox (preferrably an HTML editor box with tinymce)
     title = models.CharField(max_length=50, default="Title")
     image = models.URLField('Image') # Don't really need this field
@@ -52,6 +52,7 @@ class Training_Category(models.Model):
         return self.title
 
 class Training(models.Model):
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, default=1)
     title = models.CharField(max_length=50, default="Title")
     content = models.TextField()
     category = models.ForeignKey(Training_Category, default=1, verbose_name="Category", on_delete=models.SET_DEFAULT)

@@ -10,7 +10,13 @@ class TrainingAdmin(admin.ModelAdmin):
             models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
             }
 
-admin.site.register(Writeup)
+class WriteupAdmin(admin.ModelAdmin):
+
+    formfield_overrides = {
+            models.TextField: {'widget': TinyMCE(attrs={'cols': 80, 'rows': 30})},
+            }
+
+admin.site.register(Writeup, WriteupAdmin)
 admin.site.register(Training_Domain)
 admin.site.register(Training_Category)
 admin.site.register(Training, TrainingAdmin)
