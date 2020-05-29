@@ -13,6 +13,8 @@ class Category_Description(models.Model):
         return self.title
 
 class Writeup(models.Model):
+    # Add author field
+    # Change from github URL to textbox (preferrably an HTML editor box with tinymce)
     title = models.CharField(max_length=50, default="Title")
     image = models.URLField('Image')
     description = models.CharField(max_length=200)
