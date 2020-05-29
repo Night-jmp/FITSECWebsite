@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -14,11 +15,13 @@ class Category_Description(models.Model):
 
 class Writeup(models.Model):
     # Add author field
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     # Change from github URL to textbox (preferrably an HTML editor box with tinymce)
     title = models.CharField(max_length=50, default="Title")
-    image = models.URLField('Image')
+    image = models.URLField('Image') # Don't really need this field
     description = models.CharField(max_length=200)
-    url = models.URLField('Github URL')
+    #url = models.URLField('Github URL')
+    content = models.TextField(default="Content here")
     year = models.IntegerField(default=2020)
 
     def __str__(self):
