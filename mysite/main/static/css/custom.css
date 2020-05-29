@@ -3,6 +3,7 @@
     min-height: 100vh;
     flex-direction: column;
     background-color: rgba(60, 56, 60, 1);
+    font-family: Courier;
   }
 
   main {
@@ -15,4 +16,8 @@
 
 .nav-link:hover {
      color: #ffffff
+}
+
+p {
+     font-size: 20px;
 }
