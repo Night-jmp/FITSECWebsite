@@ -19,7 +19,7 @@ urlpatterns = [
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
 
-  path("writeups", views.writeups, name="writeups"), # Need a writeups/<slug:slug> for each writeup
+  path("writeups", views.writeups, name="writeups"),
   path("writeups/<slug:slug>", views.writeup, name="writeup"),
 
   path("training", views.training, name="training"),
