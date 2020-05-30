@@ -49,3 +49,4 @@ Temporary Items
 # Program file exclusions
 *.pyc
 __pycache__/
+migrations/
