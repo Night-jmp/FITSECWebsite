@@ -80,12 +80,17 @@ def about(request):
                   template_name='main/about.html')
 
 
-def writeups(request):
+def writeups(request, slug=None):
     all_writeups = Writeup.objects.all()
     context = {'all_writeups': all_writeups}
     return render(request = request,
                   template_name='main/writeups.html', context=context)
 
+def writeup(request, slug=None):
+    writeup = Writeup.objects.get(slug=slug)
+    context = {'writeup':writeup}
+    return render(request = request,
+                   template_name='main/writeups.html', context=context)
 
 def getinvolved(request):
     return render(request = request,
@@ -118,26 +123,35 @@ def dashboard(request):
                   template_name='main/dashboard.html')
 
 @login_required
-def training(request):
-    all_training = Training_Domain.objects.all()
-    context = {'all_training': all_training}
-    return render(request = request,
+def training(request, slug=None):
+
+    if "training" in request.path:
+        all_training = Training_Domain.objects.all()
+        context = {'all_training': all_training}
+        return render(request = request,
                   template_name='main/training.html', context=context)
 
-@login_required
-def CTF(request):
-    all_categories = Training_Domain.objects.get(title="CTF").training_category_set.all()
-    context = {'all_categories': all_categories}
-    return render(request = request, template_name='main/CTF.html', context=context)
+    domain_list = list(Training_Domain.objects.all())
+    for domain in domain_list:
+        if domain.slug in request.path:
+            all_categories = Training_Domain.objects.get(slug=slug).training_category_set.all()
+            context = {'all_categories': all_categories}
+            request.path = "training/" + request.path
+            return render(request = request, template_name='main/training.html', context=context)
 
-@login_required
-def CPTC(request):
-    all_categories = Training_Domain.objects.get(title="Penetration Testing").training_category_set.all()
-    context = {'all_categories': all_categories}
-    return render(request = request, template_name='main/CPTC.html', context=context)
 
-@login_required
-def CCDC(request):
-    all_categories = Training_Domain.objects.get(title="Cyber Defense").training_category_set.all()
-    context = {'all_categories': all_categories}
-    return render(request = request, template_name='main/CCDC.html', context=context)
+    category_list = list(Training_Category.objects.all())
+    for category in category_list:
+        if category.slug in request.path:
+            all_modules = Training_Category.objects.get(slug=slug).training_set.all()
+            context = {'all_modules':all_modules}
+            return render(request = request, template_name='main/training.html', context=context)
+
+    module_list = list(Training.objects.all())
+    for module in module_list:
+        if module.slug in request.path:
+            training_module = Training.objects.get(slug=slug)
+            context = {'training_module':training_module}
+            return render(request = request, template_name='main/training.html', context=context)
+
+   

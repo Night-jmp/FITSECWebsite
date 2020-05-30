@@ -4,41 +4,35 @@
 
 {% block content %}
 
-<script>
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
-</script>
-
-
-<div class="container">
-
 <br><br>
+{% if all_writeups %}
 <h4 style="text-align:center;"><b>Writeups</b></h4><br><br>
 <p style="text-align:justify;"> Writeups are a hacker's way of not only sharing technical methods as an educational tool, but also their way of bragging about their abilities as a hacker. Below are some of the challenges we have completed.<br><br>
-
-
-{% if all_writeups %}
   <div class="row">
     {% for writeup in all_writeups %}
-    <div class="col s12 m5">
-      <div class="card">
-        <div class="card-image">
-	  <img src="{{ writeup.image }}">
-	  <span class="card-title">{{ writeup.title }}</span>
+        <div class="col s12 m6 l4">
+            <a href="writeups/{{writeup.slug}}", style="color:white">
+                <div class="card hoverable #b71c1c red darken-4">
+                    <div class="card-content">
+                        <div class="card-title">{{writeup.title}}</div>
+                        <p>{{writeup.description}}</p>
+                    </div>
+                </div>
+            </a>
         </div>
-        <div class="card-content">
-	  <p>{{ writeup.description }}</p>
-        </div>
-        <div class="card-action">
-	  <a href="{{ writeup.url }}">Writeup here!</a>
-        </div>
-      </div>
-    </div>
     {% endfor %}
-  </div>
+</div>
+<br><br>
+</p>
 {% endif %}
 
-
+{% if writeup %}
+<h4 style="text-align:center;"><b>{{writeup.title}}</b></h4>
+<h5 style="text-align:center;"><b>Author: {{writeup.author}}</b></h5><br><br>
+<p style="text-align:justify;">
+    {{writeup.content}}
+</p>
+<br><br>
+{% endif %}
 
 {% endblock %}

@@ -10,7 +10,6 @@ urlpatterns = [
   path("logout", views.logout_request, name="logout"),
   path("login", views.login_request, name="login"),
 
-  path("writeups", views.writeups, name="writeups"),
   path("contact", views.contact, name="contact"),
   path("about", views.about, name="about"),
   path("getinvolved", views.getinvolved, name="getinvolved"),
@@ -19,8 +18,10 @@ urlpatterns = [
   path("sponsors", views.sponsors, name="sponsors"),
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
+
+  path("writeups", views.writeups, name="writeups"),
+  path("writeups/<slug:slug>", views.writeup, name="writeup"),
+
   path("training", views.training, name="training"),
-  path("CTF", views.CTF, name="CTF"),
-  path("CPTC", views.CPTC, name="CPTC"),
-  path("CCDC", views.CCDC, name="CCDC"),
+  path("<slug:slug>", views.training, name="training_modules"), # Need this to be training/<slug:slug>
 ]
