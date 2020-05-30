@@ -1,0 +1,80 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<br><br>
+{% if all_training %}
+<h4 style="text-align:center;"><b>Training</b></h4><br><br>
+<p style="text-align:justify;">Training has been segmented into domains and categories. Some training modules may bleed over into another domain or category, so if you don't see it where you expect, look elsewhere.<br><br>
+
+    <div class="row">
+        {% for domain in all_training %}
+            <div class="col s12 m6 l4">
+                <a href="{{domain.slug}}", style="color:white">
+                    <div class="card hoverable #b71c1c red darken-4">
+                        <div class="card-content">
+                            <div class="card-title">{{domain.title}}</div>
+                            <p>{{domain.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+<br><br>
+</p>
+{% endif %}
+
+{% if all_categories %}
+<h4 style="text-align:center;"><b>{{all_categories.0.domain}}</b></h4><br><br>
+<p style="text-align:justify;">{{all_categories.0.cat_description.description}}<br><br>
+
+    <div class="row">
+        {% for category in all_categories %}
+            <div class="col s12 m6 l4">
+                <a href="{{category.slug}}", style="color:white">
+                    <div class="card hoverable #b71c1c red darken-4">
+                        <div class="card-content">
+                            <div class="card-title">{{category.title}}</div>
+                            <p>{{category.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+<br><br>
+</p>
+{% endif %}
+
+{% if all_modules %}
+<h4 style="text-align:center;"><b>{{all_modules.0.category}}</b></h4><br><br>
+<p style="text-align:justify;">{{all_modules.0.cat_description.description}}<br><br>
+
+    <div class="row">
+        {% for module in all_modules %}
+            <div class="col s12 m6 l4">
+                <a href="{{module.slug}}", style="color:white">
+                    <div class="card hoverable #b71c1c red darken-4">
+                        <div class="card-content">
+                            <div class="card-title">{{module.title}}</div>
+                            <p>{{module.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+<br><br>
+</p>
+{% endif %}
+
+{% if training_module %}
+<h4 style="text-align:center;"><b>{{training_module.title}}</b></h4>
+<h5 style="text-align:center;"><b>Author: {{training_module.author}}</b></h5><br><br>
+<p style="text-align:justify;">
+    {{training_module.content}}
+</p>
+<br><br>
+{% endif %}
+
+{% endblock %}

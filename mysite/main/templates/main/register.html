@@ -1,7 +1,8 @@
 {% extends 'main/header.html' %}
 
 {% block content %}
-    <br>
+  <br><br>
+  <h4 style="text-align:center;"><b>Register</b></h4>
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
