@@ -30,11 +30,7 @@ SECURE_SSL_REDIRECT = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< Updated upstream
-ALLOWED_HOSTS = []
-=======
 ALLOWED_HOSTS = ['www.fitsec.org', '35.237.199.61', '*']
->>>>>>> Stashed changes
 
 
 # Application definition
@@ -130,16 +126,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 LOGIN_URL = "/"
 
->>>>>>> Stashed changes
-=======
-LOGIN_URL = "/login"
-
->>>>>>> 89afd688c5257b6df77563486137eae0558e8210
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 1120,
