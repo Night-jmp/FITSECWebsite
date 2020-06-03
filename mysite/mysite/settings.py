@@ -130,11 +130,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 LOGIN_URL = "/"
 
 >>>>>>> Stashed changes
+=======
+LOGIN_URL = "/login"
+
+>>>>>>> 89afd688c5257b6df77563486137eae0558e8210
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 1120,

@@ -4,88 +4,35 @@
 
 {% block content %}
 
-<script>
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
-</script>
-
-
-<div class="container">
-
-
+<br><br>
+{% if all_writeups %}
 <h4 style="text-align:center;"><b>Writeups</b></h4><br><br>
 <p style="text-align:justify;"> Writeups are a hacker's way of not only sharing technical methods as an educational tool, but also their way of bragging about their abilities as a hacker. Below are some of the challenges we have completed.<br><br>
-
-
-<h4 style="text-align:center;"><b>Writeups by year</b></h4>
-      <ul class = "collapsible" data-collapsible = "accordion">
-         <li>
-            <div class = "collapsible-header">2019</div>
-            <div class = "collapsible-body"><p><a href="https://github.com/FITSEC/CTF-Writeups/tree/master/2019/CollegiatePentestingCompetition">Collegiate Penetration Testing Competition</a></p></div>
-         </li>
-
-         <li>
-            <div class = "collapsible-header">2020</div>
-            <div class = "collapsible-body"><p><a href="https://github.com/FITSEC/CTF-Writeups/tree/master/2020/UTCTF">UTCTF</a>
-		
-<div class="row">
-    <div class="col s5 m6">
-      <div class="card">
-        
-
-	<div class="card-image">
-          <img src="{% static 'images/1_frame_per_minute.png' %}">
-          <span class="card-title">1 Frame Per Minute</span>
+  <div class="row">
+    {% for writeup in all_writeups %}
+        <div class="col s12 m6 l4">
+            <a href="writeups/{{writeup.slug}}", style="color:white">
+                <div class="card hoverable #b71c1c red darken-4">
+                    <div class="card-content">
+                        <div class="card-title">{{writeup.title}}</div>
+                        <p>{{writeup.description}}</p>
+                    </div>
+                </div>
+            </a>
         </div>
-        <div class="card-content">
-          <p>Simple SSTV steganography CTF challenge that is solved with an SSTV decoder.</p>
-        </div>
-        <div class="card-action">
-          <a href="https://github.com/FITSEC/CTF-Writeups/tree/master/2020/UTCTF/Forensics/1_Frame_Per_Minute">Writeup here!</a>
-        </div>
-      </div>
-
-    </div>
-
-
-
-    <div class="col s5 m6">
-      <div class="card">
-        <div class="card-image">
-          <img src="{% static 'images/Griffith_Observatory.png' %}">
-          <span class="card-title">Observe Closely</span>
-        </div>
-        <div class="card-content">
-          <p>Extract a hidden binary from an image using binwalk.</p>
-        </div>
-        <div class="card-action">
-          <a href="https://github.com/FITSEC/CTF-Writeups/tree/master/2020/UTCTF/Forensics/Observe_Closely">Writeup here!</a>
-        </div>
-      </div>
+    {% endfor %}
 </div>
-
-
-
-
-
-  </div>
-
-
-
-
-		</p></div>
-         </li>
-
-      </ul>
-
-
-
+<br><br>
 </p>
-</div>
+{% endif %}
 
-
-
-
+{% if writeup %}
+<h4 style="text-align:center;"><b>{{writeup.title}}</b></h4>
+<h5 style="text-align:center;"><b>Author: {{writeup.author}}</b></h5><br><br>
+<p style="text-align:justify;">
+    {{writeup.content}}
+</p>
+<br><br>
+{% endif %}
 
 {% endblock %}
