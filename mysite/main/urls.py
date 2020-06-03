@@ -19,4 +19,13 @@ urlpatterns = [
   path("sponsors", views.sponsors, name="sponsors"), 
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
+<<<<<<< Updated upstream
+=======
+
+  path("writeups", views.writeups, name="writeups"),
+  path("writeups/<slug:slug>", views.writeup, name="writeup"),
+
+  path("training", views.training, name="training"),
+  #path("<slug:slug>", views.training, name="training_modules"), # Need this to be training/<slug:slug>
+>>>>>>> Stashed changes
 ]

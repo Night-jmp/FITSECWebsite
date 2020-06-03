@@ -20,12 +20,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*qmpk%v4+qmpjxpis8@_lop&a9kpz5n4gd4^fov9v&z*zqdotx'
+#SECRET_KEY = '*qmpk%v4+qmpjxpis8@_lop&a9kpz5n4gd4^fov9v&z*zqdotx'
+SECRET_KEY = "bb%)kh5chf(rrj$ff93v!=_ri*-w9665!^ktqeazztwv((-^im"
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< Updated upstream
 ALLOWED_HOSTS = []
+=======
+ALLOWED_HOSTS = ['www.fitsec.org', '35.237.199.61', '*']
+>>>>>>> Stashed changes
 
 
 # Application definition
@@ -121,6 +130,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+<<<<<<< Updated upstream
+=======
+LOGIN_URL = "/"
+
+>>>>>>> Stashed changes
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': 1120,
