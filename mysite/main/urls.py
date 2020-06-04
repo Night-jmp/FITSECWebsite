@@ -22,6 +22,6 @@ urlpatterns = [
   path("writeups", views.writeups, name="writeups"),
   path("writeups/<slug:slug>", views.writeup, name="writeup"),
 
-  path("training", views.training, name="training"),
-  #path("<slug:slug>", views.training, name="training_modules"), # Need this to be training/<slug:slug>
+  path("training", views.trainings, name="training"),
+  path("training/<slug:slug>", views.training, name="training_modules"), # Need this to be training/<slug:slug>
 ]

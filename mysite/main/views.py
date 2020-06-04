@@ -125,12 +125,6 @@ def dashboard(request):
 @login_required
 def training(request, slug=None):
 
-    if "training" in request.path:
-        all_training = Training_Domain.objects.all()
-        context = {'all_training': all_training}
-        return render(request = request,
-                  template_name='main/training.html', context=context)
-
     domain_list = list(Training_Domain.objects.all())
     for domain in domain_list:
         if domain.slug in request.path:
@@ -153,5 +147,16 @@ def training(request, slug=None):
             training_module = Training.objects.get(slug=slug)
             context = {'training_module':training_module}
             return render(request = request, template_name='main/training.html', context=context)
+
+
+@login_required
+def trainings(request, slug=None):
+
+    if "training" in request.path:
+        all_training = Training_Domain.objects.all()
+        context = {'all_training': all_training}
+        return render(request = request,
+                  template_name='main/training.html', context=context)
+
 
    
