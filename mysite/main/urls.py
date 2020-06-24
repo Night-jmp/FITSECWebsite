@@ -9,7 +9,7 @@ urlpatterns = [
   path("register/", views.register, name="register"),
   path("logout", views.logout_request, name="logout"),
   path("login", views.login_request, name="login"),
-
+  path("verify", views.verify, name="verify"),
   path("contact", views.contact, name="contact"),
   path("about", views.about, name="about"),
   path("getinvolved", views.getinvolved, name="getinvolved"),
@@ -18,6 +18,7 @@ urlpatterns = [
   path("sponsors", views.sponsors, name="sponsors"),
   path("news", views.news, name="news"),
   path("dashboard", views.dashboard, name="dashboard"),
+  path("account", views.account, name="account"),
 
   path("writeups", views.writeups, name="writeups"),
   path("writeups/<slug:slug>", views.writeup, name="writeup"),

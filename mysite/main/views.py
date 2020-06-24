@@ -1,22 +1,27 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
-from .forms import NewUserForm
-from .models import Writeup, Training, Training_Domain, Training_Category
+from .forms import NewUserForm, FlagCheckForm
+from .models import Writeup, Training, Training_Domain, Training_Category, TrainingCompletion
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
+from django.urls import reverse
 
 # Create your views here.
 def homepage(request):
     return render(request = request,
                   template_name='main/home.html')
 
+
+
 def register(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             if "@my.fit.edu" not in email:
@@ -24,9 +29,17 @@ def register(request):
             else:
                 # Need to add a wait for email validation here.
                 # Perhaps a validated field for users?
+                subject = "Welcome to FITSEC!"
+                message = "Thank you for registering your email."
+                from_mail = settings.EMAIL_HOST_USER
+                to_mail = [email, from_mail]
+                send_mail(subject, message, from_mail, to_mail)
                 messages.success(request, f"New account created: {username}")
-                login(request, user)
-                return redirect("main:homepage")
+
+                user = form.save()
+                
+                #login(request, user)
+                return redirect(reverse('main:verify'))
 
         else:
             for msg in form.error_messages:
@@ -42,6 +55,10 @@ def register(request):
                   context={"form":form})
 
 
+def verify(request):
+    return render(request=request, template_name="main/verify.html")
+   
+
 @login_required
 def logout_request(request):
     logout(request)
@@ -55,15 +72,19 @@ def login_request(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password) 
             if user is not None:
-                login(request, user)
-                messages.info(request, f"You are now logged in as {username}")
-                return redirect('/')
+                if user.is_active:
+                    login(request, user)
+                    messages.info(request, f"You are now logged in as {username}")
+                    return redirect('/')
+                else:
+                    messages.error("Unverified account!")
             else:
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Invalid username or password.")
+            #return redirect(reverse("main:verify"))
     form = AuthenticationForm()
     return render(request = request,
                     template_name = "main/login.html",
@@ -145,8 +166,28 @@ def training(request, slug=None):
     for module in module_list:
         if module.slug in request.path:
             training_module = Training.objects.get(slug=slug)
-            context = {'training_module':training_module}
+            try:
+                completed = TrainingCompletion.objects.get(user=request.user.id).completed
+            except:
+                completed = False
+            if completed != True:
+                if request.method == "POST":
+                    flag_check = FlagCheckForm(request.POST)
+                    if flag_check.is_valid():
+                        flag = flag_check.cleaned_data.get('input_flag')
+                        if flag == training_module.flag:
+                            messages.success(request, f'Correct flag! {flag}')
+                            TrainingCompletion.objects.create(module=training_module, user=request.user, completed=True)
+                            all_modules=training_module.category.training_set.all()
+                            context = {'all_modules':all_modules}
+                            return render(request=request, template_name='main/training.html', context=context)
+                        else:
+                            messages.error(request, f'Incorrect flag!')
+
+            flag_check = FlagCheckForm()
+            context = {'training_module':training_module, 'flag_check':flag_check,"completed":completed}
             return render(request = request, template_name='main/training.html', context=context)
+
 
 
 @login_required
@@ -159,4 +200,6 @@ def trainings(request, slug=None):
                   template_name='main/training.html', context=context)
 
 
-   
+@login_required
+def account(request):
+    return render(request=request, template_name="main/account.html")

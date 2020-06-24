@@ -73,6 +73,20 @@
 <h5 style="text-align:center;"><b>Author: {{training_module.author}}</b></h5><br><br>
 <p style="text-align:justify;">
     {{training_module.content}}
+    <br><br>
+    {% if not completed %}
+    {% if flag_check %}
+    <form method="POST">
+	{% csrf_token %}
+    	{{flag_check.as_p}}
+     	<button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Submit Flag</button>
+    </form>
+    {% endif %}
+    {% endif %}
+    {% if completed %}
+    	<br><br>
+	<h5 style="text-align:center;"><b>Training module completed!</b></h5>
+    {% endif %}
 </p>
 <br><br>
 {% endif %}
