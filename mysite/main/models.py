@@ -59,7 +59,7 @@ class Training(models.Model):
     category = models.ForeignKey(Training_Category, default=1, verbose_name="Category", on_delete=models.SET_DEFAULT)
     slug = models.SlugField(max_length=50, default=1)
     cat_description = models.ForeignKey(Category_Description, default=1, verbose_name="Cat", on_delete=models.SET_DEFAULT)
-    challenge = models.FileField(upload_to="static/challenges", default="default")
+    challenge = models.FileField(upload_to="challenges", default="default")
     flag = models.CharField(max_length=50, default="Flag")
     user = models.ForeignKey(User, null=True, on_delete=models.SET_DEFAULT, default="none", related_name="user")
 

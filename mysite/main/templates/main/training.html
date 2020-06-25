@@ -74,6 +74,10 @@
 <p style="text-align:justify;">
     {{training_module.content}}
     <br><br>
+    <form action={{training_module.challenge.url}}>
+	    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Download Challenge File</button>
+    </form>
+    <br><br>
     {% if not completed %}
     {% if flag_check %}
     <form method="POST">
