@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 
@@ -25,4 +25,9 @@ urlpatterns = [
 
   path("training", views.trainings, name="training"),
   path("training/<slug:slug>", views.training, name="training_modules"), # Need this to be training/<slug:slug>
+
+  path("internship", views.internship, name="internship"),
+
+  path("accounts/",include("django.contrib.auth.urls")),
+  path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
 ]

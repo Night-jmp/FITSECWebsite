@@ -2,7 +2,7 @@ from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from django.db import models
 
-from .models import Writeup, Training_Domain, Training_Category, Training, Category_Description
+from .models import *
 
 class TrainingAdmin(admin.ModelAdmin):
 
@@ -23,3 +23,6 @@ admin.site.register(Training_Domain)
 admin.site.register(Training_Category)
 admin.site.register(Training, TrainingAdmin)
 admin.site.register(Category_Description)
+admin.site.register(Internship)
+admin.site.register(TrainingCompletion)
+admin.site.register(Profile)

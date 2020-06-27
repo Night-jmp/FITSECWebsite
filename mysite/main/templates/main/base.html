@@ -14,16 +14,17 @@
               font-family: Dodger;
               src: url({% static 'fonts/dodger/dodger3_1.ttf' %})
          }
+	
      </style>
 </head>
 
 
-<body style="background-color:white;">
+<body>
   <nav>
     <div class="nav-wrapper #b71c1c red darken-4">
 	    <a href="#" class="brand-logo"><img style="width:60px; height:60px;" src="{% static 'images/FITSECCrest.png' %}"/></a>
 	<ul id="nav-mobile" class="right hide-on-med-and-down">
-      	{% include 'main/includes/navbaritems.html' %}
+      	{% include 'main/includes/navbarprofile.html' %}
       </ul>
     </div>
   </nav>

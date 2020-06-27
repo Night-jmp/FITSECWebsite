@@ -1,0 +1,31 @@
+{% extends 'main/header.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<br><br>
+<h4 style="text-align:center;"><b>Internships</b></h4><br><br>
+<p style="text-align:justify;">Internship information below<br><br>
+  <div class="row">
+    {% for internship in internships %}
+        <div class="col s12 m6 l4">
+                <div class="card hoverable #b71c1c red darken-4">
+                    <div class="card-content">
+                        <div class="card-title" style="color:white;">{{internship.title}}</div>	
+			<p style="color:white;">Company: {{internship.company}}</p>
+			<br>
+			<p style="color:white;">{{internship.description}}</p>
+			<br>
+			<p style="color:white;">Location: {{internship.city}}, {{internship.state}}</p>
+			<br>
+			<a href="{{internship.website}}" style="color:white;">{{internship.website}}</a>
+                    </div>
+                </div>
+        </div>
+    {% endfor %}
+</div>
+<br><br>
+</p>
+
+{% endblock %}

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'tinymce',
+    'six',
 ]
 
 MIDDLEWARE = [
@@ -136,13 +137,12 @@ STATIC_ROOT = '/var/www/html/mysite/main/static'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ('/var/www/html/mysite/main/static',)
-
 MEDIA_ROOT = "/var/www/html/mysite/media/"
 
 MEDIA_URL = "https://www.fitsec.org/media/"
 
 LOGIN_URL = "/"
+LOGIN_REDIRECT_URL = '/'
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
