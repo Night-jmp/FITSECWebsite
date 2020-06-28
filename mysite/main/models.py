@@ -75,6 +75,9 @@ class TrainingCompletion(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     completed = models.BooleanField()
 
+    def __str__(self):
+        return self.user.username
+
 
 class Internship(models.Model):
     title = models.CharField(max_length=50, default="Internship Title")
@@ -89,10 +92,6 @@ class Internship(models.Model):
 
     def __str__(self):
         return self.title
-
-
-
-####### NEW
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -110,3 +109,12 @@ def update_profile_signal(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+class StoreItem(models.Model):
+    name = models.CharField(max_length=50, default="Item Name")
+    price = models.IntegerField(default=999999)
+    description = models.TextField()
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+            return self.name

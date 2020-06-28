@@ -1,0 +1,43 @@
+{% extends 'main/header.html' %}
+
+
+{% load static %}
+{% block content %}
+
+<br>
+
+
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+
+<div class="container">
+	<h4 style="text-align:center;"><b>FITSEC Store</b></h4>
+  
+  <p style="text-align:justify;">
+  The FITSEC store is a place to exchange earned FITCOINS with rewards. To earn FITCOINS, you complete training, write training modules, author writeups on challenges you've completed during competitions, accept awards from the FITSEC bug bounty program, or finish tasks from the Task Bounty Board.
+  </p>
+  
+  <p style="text-align:justify;">
+  The items listed below are limited in supply. Once they're gone, they are gone. Many of the items may become available again the following semester should they be restocked. Be sure to purchase any items before they vanish!
+  </p>
+
+      <ul class = "collapsible" data-collapsible = "accordion">
+	      {% for item in items %}
+	      {% ifnotequal item.quantity 0%}
+         <li>
+		 <div class = "collapsible-header">Item: {{item.name}}<br>Price: {{item.price}} FITCOINS<br>Available:{{item.quantity}}</div>
+		 <div class = "collapsible-body"><p>{{item.description}}</p></div>
+         </li>
+	 {% endifnotequal%}
+
+	 {% endfor %}
+      </ul>
+
+
+</div>
+<br><br>
+
+{% endblock %}

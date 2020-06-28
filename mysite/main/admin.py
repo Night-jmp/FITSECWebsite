@@ -18,6 +18,7 @@ class WriteupAdmin(admin.ModelAdmin):
     #        }
     pass
 
+
 admin.site.register(Writeup, WriteupAdmin)
 admin.site.register(Training_Domain)
 admin.site.register(Training_Category)
@@ -26,3 +27,4 @@ admin.site.register(Category_Description)
 admin.site.register(Internship)
 admin.site.register(TrainingCompletion)
 admin.site.register(Profile)
+admin.site.register(StoreItem)

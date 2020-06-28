@@ -306,3 +306,9 @@ def activate(request, uidb64, token):
         return redirect('/')
     else:
         return render(request, 'registration/activation_invalid.html')
+
+@login_required
+def store(request):
+    items = StoreItem.objects.all()
+    context = {'items':items}
+    return render(request=request, template_name="main/store.html", context=context)

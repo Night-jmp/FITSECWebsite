@@ -40,3 +40,5 @@ class SignupForm(UserCreationForm):
 class FlagCheckForm(forms.Form):
     input_flag = forms.CharField(label="flag", max_length=50)
 
+#class CheckOrder(forms.Form):
+

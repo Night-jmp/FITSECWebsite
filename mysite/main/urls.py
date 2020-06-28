@@ -30,4 +30,6 @@ urlpatterns = [
 
   path("accounts/",include("django.contrib.auth.urls")),
   path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
+  
+  path("store", views.store, name="store"),
 ]
