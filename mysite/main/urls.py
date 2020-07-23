@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-
+from django.conf.urls import url
 
 app_name = 'main'  # here for namespacing of urls.
 
@@ -31,5 +31,6 @@ urlpatterns = [
   path("accounts/",include("django.contrib.auth.urls")),
   path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
   
-  path("store", views.store, name="store"),
+  path("store", views.store, name="store"), 
+  path("bounty", views.bounty, name="bounty"),
 ]

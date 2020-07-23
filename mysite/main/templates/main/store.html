@@ -29,12 +29,39 @@
 	      {% ifnotequal item.quantity 0%}
          <li>
 		 <div class = "collapsible-header">Item: {{item.name}}<br>Price: {{item.price}} FITCOINS<br>Available:{{item.quantity}}</div>
-		 <div class = "collapsible-body"><p>{{item.description}}</p></div>
+		 
+		<div class = "collapsible-body"><p>
+
+   			<form method="POST">
+
+			{% csrf_token %}
+			{{item.description}}<br><br>
+			<button style="background-color:#b71c1c; color:white" class="btn btn-outline-info" type="submit" name="{{item.name}}">Purchase</button>
+
+		 	</form>
+			</p></div>
          </li>
 	 {% endifnotequal%}
 
 	 {% endfor %}
       </ul>
+
+      {% if orders %}
+
+	<h4 style="text-align:center;"><b>Your Orders</b></h4>
+
+  	<p style="text-align:justify;">
+	To cancel an order, email the admin at fitsec@fitsec.org. Our web developers are paid in FITCOINS and as such, decided to go on strike before implementing a cancel order function.
+	</P>
+	<ul>
+	{% for order in orders %}
+
+	<li><b>	{{order.item.name}}</b></li>
+
+	{% endfor %}
+	</ul>
+      {% endif %}
+      <br><br>
 
 
 </div>

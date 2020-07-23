@@ -72,11 +72,13 @@
 <h4 style="text-align:center;"><b>{{training_module.title}}</b></h4>
 <h5 style="text-align:center;"><b>Author: {{training_module.author}}</b></h5><br><br>
 <p style="text-align:justify;">
-    {{training_module.content}}
+    {% autoescape off %}
+    {{training_module.content|safe}}
+    {% endautoescape %}
     <br><br>
     {% ifnotequal training_module.challenge.name 'default'  %}
     <form action={{training_module.challenge.url}}>
-	    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Download Challenge File</button>
+	    <button style="background-color:#b71c1c; color:white" class="btn btn-outline-info" type="submit">Download Challenge File</button>
     </form>
     <br><br>
     {% endifnotequal %}
@@ -85,7 +87,7 @@
     <form method="POST">
 	{% csrf_token %}
     	{{flag_check.as_p}}
-     	<button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Submit Flag</button>
+     	<button style="background-color:#b71c1c; color:white" class="btn btn-outline-info" type="submit">Submit Flag</button>
     </form>
     {% endif %}
     {% endif %}

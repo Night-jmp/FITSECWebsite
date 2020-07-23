@@ -7,9 +7,9 @@
         <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-            <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Login</button>
+            <button style="background-color:#b71c1c; color:white" class="btn btn-outline-info" type="submit">Login</button>
         </form>
 	Don't have an account? <a href="/register" target="blank"><strong>register here</strong></a>!<br>
-	Forgot your password? <a href="/accounts/password_reset/"><strong>reset here</strong>!
+	Forgot your password? <a href="/accounts/password_reset/"><strong>reset here</strong></a>!
     </div>
 {% endblock %}

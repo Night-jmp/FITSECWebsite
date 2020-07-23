@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -20,10 +21,10 @@ class Writeup(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, default=1)
     # Change from github URL to textbox (preferrably an HTML editor box with tinymce)
     title = models.CharField(max_length=50, default="Title")
-    image = models.URLField('Image') # Don't really need this field
+    #image = models.URLField('Image') # Don't really need this field
     description = models.CharField(max_length=200)
     slug = models.SlugField(max_length=50, default=1)
-    content = models.TextField(default="Content here")
+    content = HTMLField()
     year = models.IntegerField(default=2020)
 
     def __str__(self):
@@ -56,7 +57,7 @@ class Training_Category(models.Model):
 class Training(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, default=1)
     title = models.CharField(max_length=50, default="Title")
-    content = models.TextField()
+    content = HTMLField()
     category = models.ForeignKey(Training_Category, default=1, verbose_name="Category", on_delete=models.SET_DEFAULT)
     slug = models.SlugField(max_length=50, default=1)
     cat_description = models.ForeignKey(Category_Description, default=1, verbose_name="Cat", on_delete=models.SET_DEFAULT)
@@ -118,3 +119,14 @@ class StoreItem(models.Model):
 
     def __str__(self):
             return self.name
+
+class Orders(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(StoreItem, verbose_name="Order", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.item.name
+
+
+    class Meta:
+        verbose_name_plural = "Orders"

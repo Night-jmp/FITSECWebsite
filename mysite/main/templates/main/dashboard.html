@@ -6,14 +6,17 @@
 
 <br>
 
-<p style="text-align:center;">
-  <img style="width:800px; height=800px;" src="{% static 'images/chevron.png' %}" class="center"/>
-</p>
 
 <div class="container">
-	<h4 style="text-align:center;"><b>Offensive and Defensive Collegiate Cybsersecurity</b></h4>
-  
-  <p style="text-align:justify;"> FITSEC is Florida Tech's Cyber Security team who is focused on competing in Cybersecurity Competitions. Not only do we offer students the opportunity to hone their skills with respect to hacking and counter-hacking, but we also are building connections with industry to provide a pathway for potential employment opportunities. We believe the best way to stop a hacker is to know their methods.
+<h4 style="text-align:center;"><b>Player statistics</b></h4>
+<br><br>
+  <p style="text-align:justify;"> 
+  {% for player in completedList %}
+  <p style="text-align:right;">
+  <label for="total">{{player.0}} ({{player.1.0}}/{{player.1.1}})</label>
+  <progress id="total" value="{{player.1.0}}" max="{{player.1.1}}">ratio</progress></>
+  {% endfor %}
+  <br><br>
   </p>
 </div>
 

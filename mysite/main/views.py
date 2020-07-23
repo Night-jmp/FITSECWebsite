@@ -185,8 +185,28 @@ def news(request):
 
 @login_required
 def dashboard(request):
+
+    trainings = Training.objects.all()
+    completions = TrainingCompletion.objects.all()
+   
+    moduleCount = 0
+    for training in trainings:
+        moduleCount += 1
+
+    completionDict = {}
+    for completion in completions:
+        if completion.user.username not in completionDict:
+            completionDict.update({completion.user.username:[1,moduleCount]})
+        else:
+            completionDict[completion.user.username][0] += 1
+  
+    sortedDict = sorted(completionDict.items(), key=lambda x: x[1][0], reverse=True)
+    completedList = sortedDict
+
+    context = {'completedList':completedList}
+   
     return render(request = request,
-                  template_name='main/dashboard.html')
+                  template_name='main/dashboard.html', context=context)
 
 @login_required
 def training(request, slug=None):
@@ -309,6 +329,35 @@ def activate(request, uidb64, token):
 
 @login_required
 def store(request):
+    if request.method == "POST":
+        purchase = None
+        for item in StoreItem.objects.all():
+            if str(item.name) in str(request.POST.get):
+                purchase = item
+
+        # Check purchased item
+        customer = Profile.objects.get(user=request.user.id)
+        if purchase.quantity > 0:
+            if customer.fitcoins < purchase.price:
+                messages.error(request, f"Insufficient FITCOINS!")
+            else:
+                messages.success(request, f"{purchase.name} successfully purchased!")
+                currentFitcoins = customer.fitcoins
+                Profile.objects.filter(id=request.user.id).update(fitcoins=currentFitcoins - purchase.price)
+                StoreItem.objects.filter(name = purchase.name).update(quantity = purchase.quantity - 1)
+                Orders.objects.create(user=request.user, item=purchase)
+
+                return redirect(reverse('main:account'))
+        else:
+            messages.error(request, f"This item is out of stock!")
+
     items = StoreItem.objects.all()
-    context = {'items':items}
+
+    orders = Orders.objects.filter(user=request.user.id)
+
+    context = {'items':items, 'orders':orders}
     return render(request=request, template_name="main/store.html", context=context)
+
+
+def bounty(request):
+    return render(request=request, template_name="main/bounty.html")
